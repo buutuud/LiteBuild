@@ -12,7 +12,7 @@ function cmd_A
     echo "Do you want to move the file $1 > $2? (Y/N) (default: Y) __"
     YN=$(promptValue "Enter Y/N")
     if [[ $YN == y ]]; then
-        cp $1 $2
+        cp -rf $1 $2
     fi
 }
 
@@ -40,7 +40,12 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
             cmd_MV $l $r
         fi
     elif [[ -ne $r ]] && [[ -e $l ]]; then
-        cmd_A $l $r
+        if [[ -d $l ]]; then
+            #mkdir -p $r
+            cmd_A $l $r
+        else
+            cmd_A $l $r
+        fi
     else
         echo "**Error No Source File [$l] **"
     fi
