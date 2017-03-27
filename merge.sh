@@ -7,7 +7,7 @@ promptValue() {
     echo $input
 }
 
-function cmd_A
+function cmd_CPR
 {
     echo "Do you want to move the file $1 > $2? (Y/N) (default: Y) __"
     YN=$(promptValue "Enter Y/N")
@@ -16,7 +16,7 @@ function cmd_A
     fi
 }
 
-function cmd_MV
+function cmd_CP
 {
     echo "Do you want to move the file $1 > $2? (Y/N) (default: Y) __"
     YN=$(promptValue "Enter Y/N")
@@ -44,14 +44,13 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
             echo "CMD>> BCompare $s/$f $d/$f"
             BCompare $s/$f $d/$f
         elif [[ $file_type == 'prefab' ]]; then
-            cmd_MV $l $r
+            cmd_CP $l $r
         fi
     elif [[ -ne $r ]] && [[ -e $l ]]; then
         if [[ -d $l ]]; then
-            #mkdir -p $r
-            cmd_A $l $r
+            cmd_CPR $l $r
         else
-            cmd_A $l $r
+            cmd_CPR $l $r
         fi
     else
         echo "**Error No Source File [$l] **"
