@@ -29,7 +29,14 @@ function cmd_MV
 }
 
 while IFS='' read -r line || [[ -n "$line" ]]; do
-    f=${line:16}
+    case $line in
+        *apple-release* )
+            f=${line:33}
+            ;;
+        *trunk* )
+            f=${line:16}
+            ;;
+    esac
     l=$s/$f r=$d/$f
     if [[ -e $l ]] && [[ -e $r ]]; then
         file_type=${l#*.}
