@@ -1,4 +1,6 @@
+taskkill -f -im et.exe
 wk='trunk'
+svn cleanup $wk
 svn up $wk
 cd $wk
 TortoiseProc /command:commit /path:Assets/Scripts/*Assets/Resources/* /closeonend:0

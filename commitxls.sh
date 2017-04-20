@@ -1,1 +1,6 @@
-TortoiseProc /command:commit /path:trunk/ResDB_CS/*trunk/xls/*trunk/tools/TRESCONV/ /closeonend:0
+wk=trunk
+cd $wk
+svn up xls
+svn up ResDB_CS
+svn up tools/TRESCONV
+TortoiseProc /command:commit /path:ResDB_CS/*xls/*tools/* /closeonend:0
